@@ -1,3 +1,5 @@
+
+
 # Vagrant VM Files
 .vagrant
 
@@ -59,6 +61,10 @@ typings/
 
 # dotenv environment variables file
 .env
+
+#copied files
+node_modules
+.DS_Store
 
 # next.js build output
 .next
