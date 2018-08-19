@@ -1,37 +1,49 @@
 require("dotenv").config();
 const Spotify = require("node-spotify-api");
 const keys = require("./keys");
-
 const spotify = new Spotify(keys.spotify);
+const fs = require("fs");
+const request = require("request");
+let log = console.log;
 
-let fs = require("fs");
-let request = require("request");
 
-
-
-module.exports.spotify_song = () => {
+module.exports.spotify_getSong = () => {
     let title = process.argv[3];
-    console.log(title);
+    log('\n You just searched: ' + title);
 
     if (!title) {
-        title = "I like Big Butts";
+        title = "505";
     } else {
         title = process.argv[3];
     }
     spotify.search({
-            type: 'track',
-            query: title
-        },(error, data) => {
-            if (!error) {
-                let results = data.tracks.items[0];
-                console.log('Spotifies Song Results \n |---------------------|');
-                console.log('|' + `Song Name: ${results.name}` + '|');
-                // console.log('|' + `Artist name:  ${resutls.album.artists[0].name}` + '|');
-                // console.log('|' + `Preview Url: ${results.preview_url}` + '|');
-                // console.log(`Album Name: ${results.album.name}`);
-                // console.log(`---------------------------------`);
+        type: 'track',
+        query: title
+    }, (error, data) => {
+        if (!error) {
+            let results = data.tracks.items[0];
+            log(' Spotifies Song Results \n--------------------------------');
+            log(` Song Name: ${results.name}`);
+            log(` Artist name:  ${results.album.artists[0].name}`);
+            log(` Album Name: ${results.album.name}`);
+            
+            if (results.preview_url === null) {
+                log(' No Preview Link Found :(');
             } else {
-                console.log('Error Reached:' + error);
+                log(` Preview Url: ${results.preview_url}`);
             }
-        })
+            log(`---------------------------------`);
+           // let appends = fs.appendFile;
+            //appends files to log.txt
+            // fs.appendFile('log.txt', results.name);
+            // fs.appendFile('log.txt', results.album.artists[0].name);
+            // fs.appendFile('log.txt', results.album.name);
+            // fs.appendFile('log.txt', results.preview_URL)
+            // fs.appendFile('log.txt', "---------------------------------");
+
+        } else {
+            log('Error Reached: ' + error);
+        }
+        
+    })
 }

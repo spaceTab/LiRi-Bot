@@ -5,5 +5,5 @@ exports.spotify = {
   secret: process.env.SPOTIFY_SECRET
 };
 
-//console.log(exports.Spotify);
+console.log('exports' + exports.spotify);
 //let spotify = new Spotify(keys.spotify);

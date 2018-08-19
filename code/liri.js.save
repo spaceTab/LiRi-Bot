@@ -1,0 +1,17 @@
+require("dotenv").config();
+let request = require("request");
+
+let Spotify = ("node-spotify-api");
+let spotify = new Spotify({
+	id: 756f9a028f6a43398bdad4b8d788b44e,
+	secret: cda43fd4170d4f0b97293272afe3a32d 
+});
+
+spotify
+	.reque'https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx')
+
+let keys = require("./keys");
+
+let args = process.argv[2];
+
+console.log("keys", keys);
