@@ -4,6 +4,7 @@ const keys = require("./keys");
 const spotify = new Spotify(keys.spotify);
 const fs = require("fs");
 const request = require("request");
+const moment = require('moment');
 let log = console.log;
 
 
@@ -26,24 +27,23 @@ module.exports.spotify_getSong = () => {
             log(` Song Name: ${results.name}`);
             log(` Artist name:  ${results.album.artists[0].name}`);
             log(` Album Name: ${results.album.name}`);
-            
+
             if (results.preview_url === null) {
                 log(' No Preview Link Found :(');
             } else {
                 log(` Preview Url: ${results.preview_url}`);
             }
             log(`---------------------------------`);
-           // let appends = fs.appendFile;
-            //appends files to log.txt
-            // fs.appendFile('log.txt', results.name);
-            // fs.appendFile('log.txt', results.album.artists[0].name);
-            // fs.appendFile('log.txt', results.album.name);
-            // fs.appendFile('log.txt', results.preview_URL)
-            // fs.appendFile('log.txt', "---------------------------------");
 
+            //appends files to log.txt
+            fs.appendFile('log.txt', results.name);
+            fs.appendFile('log.txt', results.album.artists[0].name);
+            fs.appendFile('log.txt', results.album.name);
+            fs.appendFile('log.txt', results.preview_URL)
+            fs.appendFile('log.txt', "---------------------------------");
         } else {
             log('Error Reached: ' + error);
         }
-        
+
     })
 }

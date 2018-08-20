@@ -5,8 +5,8 @@ const spotify = new Spotify(keys.spotify);
 const fs = require("fs");
 const request = require("request");
 const searchSpotify = require("./spotify.js");
-
 const searchOMDB = require("./omdb.js");
+const searchBands = require("./bands.js");
 
 //first CMDL argument.
 let args = process.argv[2];
@@ -23,20 +23,23 @@ switch(args){
 		console.log('Spotify Has Been Reached'); //test log
 		searchSpotify.spotify_getSong();
 	break; 
-	case "this-movie":
+	case "movie-this":
 		console.log('OMDB Has Been Reached'); //test log
 		searchOMDB.omdb_getMovie();
 	break;
-
+	case "concert-this":
+		console.log("Bands-In-Town Has Been Reached");
+		searchBands.get_concerts();
+	break;
 	case "do-what-it-says":
-		liri_says();
+		//liri_says();
 	break;
 	default:
-		console.log("\t   INVALID SEARCH \nto run a search please enter these commands:");
+		console.log("\t\tINVALID SEARCH \nto run a search please enter these commands:");
 		console.log("-> spotify-this-song :: For spotify");
-		console.log("-> this-movie        :: For OMDB-Movies");
-		console.log("-> this-band         :: for Bands-In-town-Search");
-		console.log("-> do-what-it-says   :: for something random");
+		console.log("-> movie-this        :: For OMDB-Movies");
+		console.log("-> concert-this         :: For Bands-In-town-Search");
+		console.log("-> do-what-it-says   :: For something random");
 	break;
 };
 

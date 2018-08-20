@@ -1,6 +1,7 @@
 require("dotenv").config();
 const request = require("request");
 const fs = require("fs");
+const moment = require("moment");
 //Cause I'm lazy and log/append is easier to top.
 let log = console.log;
 let appends = fs.appendFile;
@@ -10,7 +11,9 @@ module.exports.omdb_getMovie = () => {
 
     request(omdb, (error, response, body) => {
         //If there's no error run.
-         if (!error && response.statusCode === 200) {
+        if (error && response.statusCode === 200) {
+            log(`Thrown Error: ${error}`);
+        } else {
             let parseBody = JSON.parse(body);
             // if (movie === null){
             // log(`Invalid Movie Title - Display Default: ${parseBody.Title}`);
@@ -27,21 +30,19 @@ module.exports.omdb_getMovie = () => {
             log(` *Rotten Tomatoes Rating: ${parseBody.tomatoRating}`);
             log(` *Rotten Tomatoes URL:    ${parseBody.tomatoURL}`);
             log(`\n ---------------------------------------------------- \n`)
-          //  appding to log.txt
+            //appeding to log.txt
+
             // fs.appendFile('log.txt', "----------------OMDB Movie Results--------------------");
             // fs.appendFile('log.txt', ` *Movie Title:  ${parseBody.Title}`);
-            // fs.appendFile('log.txt', ` *Year Release: ${parseBody.Year}` );
-            // fs.appendFile('log.txt', ` *IMDB Rating:  ${parseBody.imdbRating}` );
+            // fs.appendFile('log.txt', ` *Year Release: ${parseBody.Year}`);
+            // fs.appendFile('log.txt', ` *IMDB Rating:  ${parseBody.imdbRating}`);
             // fs.appendFile('log.txt', ` *Country:  ${parseBody.Country}`);
             // fs.appendFile('log.txt', ` *Language: ${parseBody.Language}`);
             // fs.appendFile('log.txt', ` *Plot:   ${parseBody.Plot}`);
             // fs.appendFile('log.txt', ` *Actors: ${parseBody.Actors}`);
-            // fs.appendFile('log.txt', ` *Rotten Tomatoes Rating: ${parseBody.tomatoRating}` );
+            // fs.appendFile('log.txt', ` *Rotten Tomatoes Rating: ${parseBody.tomatoRating}`);
             // fs.appendFile('log.txt', ` *Rotten Tomatoes URL:    ${parseBody.tomatoURL}`);
             // fs.appendFile('log.txt', `\n ---------------------------------------------------- \n`);
-        } else {
-            //if there is an error -> log error
-            log(`Thrown Error: ${error}`);
         }
     });
 }
