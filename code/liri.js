@@ -1,7 +1,9 @@
 require("dotenv").config();
 const Spotify = require("node-spotify-api");
+const Bands   = require("bandsintown-events");
 const keys = require("./keys");
 const spotify = new Spotify(keys.spotify);
+const bands   = new Bands(keys.bandsInTown);
 const fs = require("fs");
 const request = require("request");
 const searchSpotify = require("./spotify.js");
@@ -38,7 +40,7 @@ switch(args){
 		console.log("\t\tINVALID SEARCH \nto run a search please enter these commands:");
 		console.log("-> spotify-this-song :: For spotify");
 		console.log("-> movie-this        :: For OMDB-Movies");
-		console.log("-> concert-this         :: For Bands-In-town-Search");
+		console.log("-> concert-this      :: For Bands-In-town-Search");
 		console.log("-> do-what-it-says   :: For something random");
 	break;
 };

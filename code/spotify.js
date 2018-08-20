@@ -36,11 +36,13 @@ module.exports.spotify_getSong = () => {
             log(`---------------------------------`);
 
             //appends files to log.txt
-            fs.appendFile('log.txt', results.name);
-            fs.appendFile('log.txt', results.album.artists[0].name);
-            fs.appendFile('log.txt', results.album.name);
-            fs.appendFile('log.txt', results.preview_URL)
-            fs.appendFile('log.txt', "---------------------------------");
+            fs.appendFile('log.txt', (`${results.name} \r\n ${results.album.artists[0].name} \r\n ${results.album.name} \r\n ${results.preview_URL} \r\n ---------------------------------`)
+            , (err) => {
+               if(err) {
+                throw err;
+               } 
+            });
+
         } else {
             log('Error Reached: ' + error);
         }

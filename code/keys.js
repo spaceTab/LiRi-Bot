@@ -5,5 +5,8 @@ exports.spotify = {
   secret: process.env.SPOTIFY_SECRET
 };
 
-console.log('exports' + exports.spotify);
-//let spotify = new Spotify(keys.spotify);
+exports.bandsInTown = {
+  app_id: process.env.BANDS_APP
+};
+//console.log('exports' + exports.spotify);
+
