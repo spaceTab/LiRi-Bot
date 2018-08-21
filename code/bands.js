@@ -7,10 +7,6 @@ const moment = require("moment");
 const DATE_FORMAT = 'YYYY-MM-DD';
 const fs = require("fs");
 
-
-
-
-
 let log = console.log;
 
 module.exports.get_concerts = () => {
@@ -29,12 +25,7 @@ module.exports.get_concerts = () => {
                 artist = "wu tang clan";
             }
 
-            //overloads JSON.stringify
-            let stringEvents = JSON.stringify(events, null, " ");
-            let parseEvents  = JSON.parse(stringEvents);    //parses strinified data
-            let eventData    = JSON.parse(parseEvents);     //parses the parsed data
-            log(eventData);
-
+            let eventData = JSON.parse(events);
             //loops through all the venues outputting each
             let eventLen = eventData.length;
             for (let i = 0; i < eventLen; i++) {
@@ -48,3 +39,5 @@ module.exports.get_concerts = () => {
         }
     });
 }
+
+//module.exports.get_concerts;

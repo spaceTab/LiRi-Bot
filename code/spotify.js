@@ -7,7 +7,6 @@ const request = require("request");
 const moment = require('moment');
 let log = console.log;
 
-
 module.exports.spotify_getSong = () => {
     let title = process.argv[3];
     log('\n You just searched: ' + title);
@@ -46,6 +45,5 @@ module.exports.spotify_getSong = () => {
         } else {
             log('Error Reached: ' + error);
         }
-
     })
 }
