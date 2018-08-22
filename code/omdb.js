@@ -7,7 +7,7 @@ const moment = require("moment");
 let log = console.log;
 let appends = fs.appendFile;
 
-module.exports.omdb_getMovie = () => {
+omdb_getMovie = () => {
     let movie = process.argv[3];
     let omdb = `http://www.omdbapi.com/?t='${movie}'&plot=short&tomatoes=true&apikey=trilogy`;
 
@@ -50,4 +50,4 @@ module.exports.omdb_getMovie = () => {
     });
 }
 
-//module.exports.omdb_getMovie;
+module.exports.omdb_getMovie = omdb_getMovie;

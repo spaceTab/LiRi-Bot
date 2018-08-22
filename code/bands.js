@@ -9,7 +9,7 @@ const fs = require("fs");
 
 let log = console.log;
 
-module.exports.get_concerts = () => {
+get_concerts = () => {
     let artist = process.argv[3];
     //I want to thank ma dude Viktor for letting me use his API key whilst I wait for their email -> day 5
     let bandsURL = `https://rest.bandsintown.com/artists/${artist}/events?app_id=${bands}`;
@@ -25,7 +25,12 @@ module.exports.get_concerts = () => {
                 artist = "wu tang clan";
             }
 
-            let eventData = JSON.parse(events);
+            //overloads JSON.stringify
+            let stringEvents = JSON.stringify(events, null, " ");
+            let parseEvents  = JSON.parse(stringEvents);    //parses strinified data
+            let eventData    = JSON.parse(parseEvents);     //parses the parsed data
+            //log(eventData);
+
             //loops through all the venues outputting each
             let eventLen = eventData.length;
             for (let i = 0; i < eventLen; i++) {
@@ -40,4 +45,4 @@ module.exports.get_concerts = () => {
     });
 }
 
-//module.exports.get_concerts;
+module.exports.get_concerts = get_concerts;

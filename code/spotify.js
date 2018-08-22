@@ -7,14 +7,14 @@ const request = require("request");
 const moment = require('moment');
 let log = console.log;
 
-module.exports.spotify_getSong = () => {
-    let title = process.argv[3];
+spotify_getSong = (args, title) => {
+    //let title = process.argv[3];
     log('\n You just searched: ' + title);
 
     if (!title) {
         title = "505";
     } else {
-        title = process.argv[3];
+        title
     }
     spotify.search({
         type: 'track',
@@ -47,3 +47,5 @@ module.exports.spotify_getSong = () => {
         }
     })
 }
+
+module.exports.spotify_getSong = spotify_getSong; 
