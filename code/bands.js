@@ -36,7 +36,7 @@ get_concerts = () => {
             for (let i = 0; i < eventLen; i++) {
                 log("|-----------------" + artist.toUpperCase() + "-----------------|");
                 log('\t\t' + eventData[i].venue.name);
-                log('\t\t' + eventData[i].venue.city + ", " + eventData[i].venue.region);
+                log('\t\t' + eventData[i].venue.city + " - " + eventData[i].venue.region);
                 log('\t\t' + moment(eventData[i].datetime).format(DATE_FORMAT));
                 log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                 log('\n');
